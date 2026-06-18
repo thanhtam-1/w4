@@ -1,0 +1,175 @@
+/* ==========================================================================
+   1. CẤU HÌNH CƠ BẢN & CHẾ ĐỘ XEM DI ĐỘNG (MOBILE-FIRST)
+   ========================================================================== */
+
+html {
+    scroll-behavior: smooth;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    color: #212529;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #004d40;
+    color: #ffffff;
+    text-align: center;
+    padding: 30px 15px;
+}
+
+header h1 {
+    margin: 0 0 10px 0;
+    font-size: 24px;
+}
+
+header p {
+    margin: 0;
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+footer {
+    background-color: #212529;
+    color: #f8f9fa;
+    text-align: center;
+    padding: 20px 15px;
+    margin-top: 20px;
+    font-size: 13px;
+}
+
+img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* CHẾ ĐỘ XEM DI ĐỘNG: Lưới một cột, khoảng cách 10px */
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 10px;
+}
+
+.card {
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    margin: 0;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.card h2 {
+    font-size: 18px;
+    color: #004d40;
+    margin: 15px 0 10px 0;
+}
+
+.card p {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #495057;
+    margin: 0;
+}
+
+/* ==========================================================================
+   2. CHẾ ĐỘ XEM MÁY TÍNH BẢNG (TABLET VIEW >= 772px)
+   ========================================================================== */
+@media screen and (min-width: 772px) {
+    .grid-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 cột */
+    }
+
+    header h1 {
+        font-size: 32px;
+    }
+
+    /* Bo tròn hình ảnh thành hình tròn */
+    .card img {
+        border-radius: 50%;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+    }
+
+    /* Phần tử cuối cùng chiếm cả 2 cột */
+    .card:last-child {
+        grid-column: span 2;
+    }
+}
+
+/* ==========================================================================
+   3. CHẾ ĐỘ XEM MÀN HÌNH LỚN (DESKTOP VIEW >= 992px)
+   ========================================================================== */
+@media screen and (min-width: 992px) {
+    .grid-container {
+        grid-template-columns: repeat(3, 1fr); /* 3 cột */
+    }
+
+    /* Xóa bỏ border-radius */
+    .card img {
+        border-radius: 0;
+        aspect-ratio: auto;
+    }
+
+    .card:last-child {
+        grid-column: auto;
+    }
+
+    /* Mỗi con số thứ ba (3, 6, 9...) chiếm cả hai cột */
+    .card:nth-child(3n) {
+        grid-column: span 2;
+    }
+}
+
+/* ==========================================================================
+   4. TRUY VẤN TIẾP CẬN: GIẢM CHUYỂN ĐỘNG (PREFERS-REDUCED-MOTION)
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto !important;
+    }
+
+    *, ::before, ::after {
+        animation-delay: -1ms !important;
+        animation-duration: 1ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0s !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* ==========================================================================
+   5. TRUY VẤN TIẾP CẬN: CHẾ ĐỘ TỐI (DARK MODE)
+   ========================================================================== */
+@media (prefers-color-scheme: dark) {
+    html {
+        background-color: #121212;
+        color: #e0e0e0;
+    }
+
+    header {
+        background-color: #1a1a1a;
+        border-bottom: 1px solid #333333;
+    }
+
+    footer {
+        background-color: #1a1a1a;
+        border-top: 1px solid #333333;
+    }
+
+    /* Thay đổi màu nền các khối hình thành màu tối */
+    .card {
+        background-color: #1e1e1e;
+        border: 2px solid #000000; /* Viền đen */
+    }
+
+    /* Chữ đổi sang màu vàng sáng đạt độ tương phản WAVE */
+    .card h2 {
+        color: #ffd600;
+    }
+
+    .card p {
+        color: #ffea00;
+    }
+}
